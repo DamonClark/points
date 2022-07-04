@@ -102,20 +102,21 @@
   <div class="btn-group actions">
     <%= link_to "Return to Projects Page", projects_path, id: :back, class: "button" %>
 
+    <%= link_to "Clone Project", new_clone_project_path(@project.id), class: "button green" %>
     <% if is_unlocked?(@project) %>
+      <%= link_unless_archived(@project, "Add Sub-Project", project_new_sub_project_path(@project), classes: :green) unless @project.parent_id.present? %>
+
       <% if current_user.admin? %>
         <%= button_to "Lock Project", toggle_locked_project_path(@project.id), method: :patch, class: "button magenta", id: "lock-btn", remote: true %>
       <% end %>
 
-      <%= link_unless_archived(@project, "Add Sub-Project", project_new_sub_project_path(@project), classes: :magenta) unless @project.parent_id.present? %>
-
-      <%= link_unless_archived(@project, "Delete Project", project_path(@project.id), classes: "delete", method: :delete, remote: true, data_attr: { confirm: "Are you sure?" }, id: :delete) %>
+      <%= link_unless_archived(@project, "Delete Project", project_path(@project.id), classes: "magenta delete", method: :delete, remote: true, data_attr: { confirm: "Are you sure?" }, id: :delete) %>
     <% end %>
 
     <% unless @project.parent_id.present? %>
       <%= link_to "#{@project.archived? ? 'Unarchive' : 'Archive'} Project", toggle_archive_project_path(@project.id), method: :patch, id: :toggle_archive, class: "button magenta", remote: true %>
     <% end %>
-    <%= link_to "Clone Project", new_clone_project_path(@project.id), class: "button green" %>
+
     <%= link_to "Generate Action Plan", project_action_plan_path(@project.id), class: "button" %>
     <% if current_user.admin? %>
       <%= link_to "View Report", project_report_path(@project.id), class: "button" %>
