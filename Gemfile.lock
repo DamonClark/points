@@ -186,6 +186,7 @@ GEM
     multi_json (1.15.0)
     multi_xml (0.6.0)
     multipart-post (2.1.1)
+    newrelic_rpm (8.8.0)
     next_rails (1.0.4)
       colorize (>= 0.8.1)
     nio4r (2.5.8)
@@ -219,8 +220,12 @@ GEM
     public_suffix (4.0.6)
     puma (4.3.12)
       nio4r (~> 2.0)
+    pundit (2.2.0)
+      activesupport (>= 3.0.0)
     racc (1.6.0)
-    rack (2.2.3)
+    rack (2.2.3.1)
+    rack-mini-profiler (3.0.0)
+      rack (>= 1.2.0)
     rack-protection (2.1.0)
       rack
     rack-test (1.1.0)
@@ -392,11 +397,14 @@ DEPENDENCIES
   jquery-ui-rails (~> 5.0, >= 5.0.5)
   listen (~> 3.7)
   mimemagic (~> 0.3.8)
+  newrelic_rpm
   next_rails
   omniauth-github (~> 2.0.0)
   omniauth-rails_csrf_protection
   pg (~> 1.1)
   puma (~> 4.3)
+  pundit (~> 2.2)
+  rack-mini-profiler
   rails (~> 6.1.4)
   rails-controller-testing
   recursive-open-struct
